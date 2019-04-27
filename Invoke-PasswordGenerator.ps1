@@ -27,7 +27,8 @@ function Invoke-PasswordGenerator {
         Uri = $passGenUri;
         ContentType = "application/json"
     }
-    $script:passGenReqData = Invoke-RestMethod @passGenParams -Verbose
+    #$script:passGenReqData = Invoke-RestMethod @passGenParams -Verbose  Powershell Core / PostMan
+    $script:passGenReqData = invoke-restmethod -uri "http://getanewpassword.com/api/generatepassword" -Body $passGenParams
     Write-Output "`r`nYour password is: $($script:passGenReqData.Password)`r`n"
 }
 
